@@ -45,7 +45,6 @@ public class GameController {
         return ResponseEntity.ok(gameBusiness.getListGame());
     }
 
-
     @GetMapping(value = "/game/{id}")
     public ResponseEntity<GameJson>
     getById(@PathVariable("id") long id) throws BaseException{

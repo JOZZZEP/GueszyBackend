@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReviewPayload {
-    private User userId;
-    private Game gameId;
+    private Integer userId;
+    private Integer gameId;
     private Integer point;
 }

@@ -23,11 +23,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/user/insert")
-    public ResponseEntity<Void> save(@RequestBody UserPayload userPayload){
-        userBusiness.saveUser(userPayload);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
+//    @PostMapping(value = "/user/register")
+//    public ResponseEntity<Void> save(@RequestBody UserPayload userPayload){
+//        userBusiness.saveUser(userPayload);
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//    }
 
     @PutMapping("/user/update/{id}")
     public ResponseEntity<UserJson> update(@PathVariable("id") long id, @RequestBody UserPayload userPayload) {
@@ -44,7 +44,6 @@ public class UserController {
     public ResponseEntity<List<UserJson>> getAll() throws BaseException {
         return ResponseEntity.ok(userBusiness.getListUsers());
     }
-
 
     @GetMapping(value = "/user/{id}")
     public ResponseEntity<UserJson>

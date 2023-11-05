@@ -4,6 +4,8 @@ import com.example.gueszybackend.user.model.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Getter
 @Setter
@@ -17,10 +19,12 @@ public class Review {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Game gameId;
 
     @Column(name = "point",nullable = false)

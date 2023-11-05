@@ -27,10 +27,11 @@ public class UserBusiness {
         return UserJson.packJson(userService.findByGueszyId(gueszyId));
     }
 
-    public void saveUser(UserPayload userPayload){
-        User user = new User(userPayload.getName(), userPayload.getPassword(), GueszyCode.generate());
-        userService.save(user);
-    }
+//    public void saveUser(UserPayload userPayload){
+//        if(userService.f)
+//        User user = new User(userPayload.getName(), userPayload.getPassword(), GueszyCode.generate());
+//        userService.save(user);
+//    }
 
     public void updateUser(long id, UserPayload userPayload){
         User user = userService.findById(id);

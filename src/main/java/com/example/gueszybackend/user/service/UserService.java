@@ -47,4 +47,7 @@ public class UserService implements IUser {
     public User login(String name,String password){
         return userRepository.findByNameAndPassword(name,password);
     }
+    public User findByName(String name){
+        return userRepository.findByName(name);
+    }
 }
