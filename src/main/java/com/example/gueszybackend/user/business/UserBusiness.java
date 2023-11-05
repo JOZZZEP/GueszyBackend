@@ -42,4 +42,11 @@ public class UserBusiness {
     public void deleteUser(long id){
         userService.deleteById(id);
     }
+
+    public UserJson login(UserPayload userPayload){
+        if(userService.login(userPayload.getName(),userPayload.getPassword()) != null){
+            return UserJson.packJson(userService.login(userPayload.getName(),userPayload.getPassword()));
+        }
+        return new UserJson();
+    }
 }

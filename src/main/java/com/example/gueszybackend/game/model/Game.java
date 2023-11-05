@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDateTime;
 
@@ -26,10 +28,12 @@ public class Game {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Category categoryId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private User userId;
 
     @Column(name = "play",nullable = false)
@@ -48,8 +52,9 @@ public class Game {
 
     }
 
-    public Game(String name, Category categoryId, User userId, Integer play, Integer access) {
+    public Game(String name, Category categoryId, User userId, Integer play, Integer access,String image) {
         this.name = name;
+        this.image = image;
         this.categoryId = categoryId;
         this.userId = userId;
         this.play = play;

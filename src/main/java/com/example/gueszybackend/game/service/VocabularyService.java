@@ -1,5 +1,6 @@
 package com.example.gueszybackend.game.service;
 
+import com.example.gueszybackend.game.model.Game;
 import com.example.gueszybackend.game.model.Vocabulary;
 import com.example.gueszybackend.game.repository.VocabularyRepository;
 import com.example.gueszybackend.game.service.impl.IVocabulary;
@@ -36,5 +37,9 @@ public class VocabularyService implements IVocabulary {
     @Override
     public void delete(long id) {
         vocabularyRepository.deleteById(id);
+    }
+
+    public List<Vocabulary> getByGameId(Game game){
+       return vocabularyRepository.findAllByGameId(game);
     }
 }

@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface VocabularyRepository extends JpaRepository<Vocabulary, Long> {
     Vocabulary findById(long id);
     Optional<Vocabulary> findOptionalById(long id);
-    List<Vocabulary> findByGameId(Game game);
+//    List<Vocabulary> findAllByGameId(Game gameId);
+    List<Vocabulary> findAllByGameId(Game game);
 }

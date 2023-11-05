@@ -10,8 +10,8 @@ import lombok.Setter;
 public class GamePayload {
     private String name;
     private String image;
-    private Category categoryId;
-    private User userId;
+    private Integer categoryId;
+    private Integer userId;
     private Integer play;
     private Integer access;
 }

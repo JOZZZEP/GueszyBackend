@@ -23,6 +23,11 @@ public class VocabularyController {
     @Autowired
     VocabularyService vocabularyService;
 
+    public VocabularyController(VocabularyService vocabularyService) {
+        this.vocabularyService = vocabularyService;
+    }
+
+
     @PostMapping(value = "/vocabulary/insert")
     public ResponseEntity<Void> save(@RequestBody VocabularyPayload vocabularyPayload){
         vocabularyBusiness.save(vocabularyPayload);
@@ -50,5 +55,11 @@ public class VocabularyController {
     public ResponseEntity<VocabularyJson>
     getById(@PathVariable("id") long id) throws BaseException{
         return ResponseEntity.ok(vocabularyBusiness.getVocabularyId(id));
+    }
+
+    @GetMapping(value = "/vocabulary/gameId/{id}")
+    public ResponseEntity<List<VocabularyJson>>
+    getByGameId(@PathVariable("id") long id)throws BaseException{
+        return ResponseEntity.ok(vocabularyBusiness.getByGameId(id));
     }
 }

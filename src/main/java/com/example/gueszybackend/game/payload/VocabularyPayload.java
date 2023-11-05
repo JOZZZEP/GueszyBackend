@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class VocabularyPayload {
     private String word;
-    private Game gameId;
+    private Integer gameId;
 }

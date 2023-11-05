@@ -43,4 +43,8 @@ public class UserService implements IUser {
     public Optional<User> findOptionalById(long id){
         return userRepository.findOptionalById(id);
     }
+
+    public User login(String name,String password){
+        return userRepository.findByNameAndPassword(name,password);
+    }
 }

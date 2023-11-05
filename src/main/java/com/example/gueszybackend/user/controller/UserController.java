@@ -51,4 +51,10 @@ public class UserController {
     getById(@PathVariable("id") long id) throws BaseException{
         return ResponseEntity.ok(userBusiness.getUserId(id));
     }
+
+    @PostMapping(value = "/user/login")
+    public ResponseEntity<UserJson>
+    login(@RequestBody UserPayload userPayload) throws BaseException{
+        return ResponseEntity.ok(userBusiness.login(userPayload));
+    }
 }
