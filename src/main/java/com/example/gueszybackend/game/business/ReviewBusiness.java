@@ -34,4 +34,12 @@ public class ReviewBusiness {
         reviewService.save(review);
     }
 
+    public List<ReviewJson> getByGameId(long id){
+        return ReviewJson.packJsons(reviewService.findByGameId(gameService.findById(id)));
+    }
+
+    public List<ReviewJson> getByUserId(long id){
+        return ReviewJson.packJsons(reviewService.findByUserId(userService.findById(id)));
+    }
+
 }

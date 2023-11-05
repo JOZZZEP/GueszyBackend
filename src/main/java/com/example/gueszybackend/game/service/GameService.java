@@ -37,4 +37,12 @@ public class GameService implements IGame {
     public void delete(long id) {
         gameRepository.deleteById(id);
     }
+    public Long getLatestInsertedId() {
+        Game latestEntity = gameRepository.findTopByOrderByIdDesc();
+        if (latestEntity != null) {
+            return latestEntity.getId();
+        } else {
+            return null; // หรือค่าเริ่มต้นที่คุณต้องการ
+        }
+    }
 }

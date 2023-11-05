@@ -2,6 +2,7 @@ package com.example.gueszybackend.game.controller;
 
 import com.example.gueszybackend.exception.BaseException;
 import com.example.gueszybackend.game.business.GameBusiness;
+import com.example.gueszybackend.game.business.VocabularyBusiness;
 import com.example.gueszybackend.game.json.CategoryJson;
 import com.example.gueszybackend.game.json.GameJson;
 import com.example.gueszybackend.game.model.Game;
@@ -22,6 +23,8 @@ public class GameController {
     GameBusiness gameBusiness;
     @Autowired
     GameService gameService;
+    @Autowired
+    VocabularyBusiness vocabularyBusiness;
 
     @PostMapping(value = "/game/insert")
     public ResponseEntity<Void> save(@RequestBody GamePayload gamePayload){
@@ -49,5 +52,13 @@ public class GameController {
     public ResponseEntity<GameJson>
     getById(@PathVariable("id") long id) throws BaseException{
         return ResponseEntity.ok(gameBusiness.getGameId(id));
+    }
+
+    @DeleteMapping(value = "/game/delete/{id}")
+    public ResponseEntity<Void>
+    delete(@PathVariable("id") long id)throws BaseException{
+        vocabularyBusiness.deleteByGameId(id);
+        gameBusiness.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -23,20 +23,22 @@ public class UserController {
     @Autowired
     UserService userService;
 
-//    @PostMapping(value = "/user/register")
-//    public ResponseEntity<Void> save(@RequestBody UserPayload userPayload){
-//        userBusiness.saveUser(userPayload);
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
+    @PostMapping(value = "/user/register")
+    public ResponseEntity<Void> save(@RequestBody UserPayload userPayload){
+        if(userService.findByName(userPayload.getName()) == null){
+            userBusiness.saveUser(userPayload);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 
     @PutMapping("/user/update/{id}")
     public ResponseEntity<UserJson> update(@PathVariable("id") long id, @RequestBody UserPayload userPayload) {
-        Optional<User> user = userService.findOptionalById(id);
-        if (user.isPresent()) {
-            userBusiness.updateUser(user.get().getId(), userPayload);
+        if(userService.findByName(userPayload.getName()) == null){
+            userBusiness.updateUser(id, userPayload);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -55,5 +57,12 @@ public class UserController {
     public ResponseEntity<UserJson>
     login(@RequestBody UserPayload userPayload) throws BaseException{
         return ResponseEntity.ok(userBusiness.login(userPayload));
+    }
+
+    @DeleteMapping(value = "/user/delete/{id}")
+    public ResponseEntity<Void>
+    delete(@PathVariable("id") long id) throws BaseException{
+        userBusiness.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

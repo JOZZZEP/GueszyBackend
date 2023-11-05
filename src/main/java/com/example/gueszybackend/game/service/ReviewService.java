@@ -1,8 +1,10 @@
 package com.example.gueszybackend.game.service;
 
+import com.example.gueszybackend.game.model.Game;
 import com.example.gueszybackend.game.model.Review;
 import com.example.gueszybackend.game.repository.ReviewRepository;
 import com.example.gueszybackend.game.service.impl.IReview;
+import com.example.gueszybackend.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,13 @@ public class ReviewService implements IReview {
     @Override
     public void delete(long id) {
         reviewRepository.deleteById(id);
+    }
+
+    public List<Review> findByGameId(Game game){
+        return reviewRepository.findByGameId(game);
+    }
+
+    public List<Review> findByUserId(User user){
+        return reviewRepository.findByUserId(user);
     }
 }

@@ -62,4 +62,18 @@ public class VocabularyController {
     getByGameId(@PathVariable("id") long id)throws BaseException{
         return ResponseEntity.ok(vocabularyBusiness.getByGameId(id));
     }
+
+    @DeleteMapping(value = "/vocabulary/delete/gameId/{id}")
+    public ResponseEntity<Void>
+    deleteByGameId(@PathVariable("id")long id)throws BaseException{
+        vocabularyBusiness.deleteByGameId(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(value = "/vocabulary/{id}")
+    public ResponseEntity<Void>
+    deleteById(@PathVariable("id") long id)throws BaseException{
+        vocabularyBusiness.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

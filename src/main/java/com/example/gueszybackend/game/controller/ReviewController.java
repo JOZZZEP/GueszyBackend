@@ -35,4 +35,16 @@ public class ReviewController {
         reviewBusiness.saveReview(reviewPayload);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping(value = "/review/gameId/{id}")
+    public ResponseEntity<List<ReviewJson>>
+    getByGameId(@PathVariable("id")long id)throws BaseException{
+        return ResponseEntity.ok(reviewBusiness.getByGameId(id));
+    }
+
+    @GetMapping(value = "/review/userId/{id}")
+    public ResponseEntity<List<ReviewJson>>
+    getByUSerId(@PathVariable("id")long id)throws BaseException{
+        return ResponseEntity.ok(reviewBusiness.getByUserId(id));
+    }
 }

@@ -2,9 +2,11 @@ package com.example.gueszybackend.game.business;
 
 import com.example.gueszybackend.game.json.GameJson;
 import com.example.gueszybackend.game.model.Game;
+import com.example.gueszybackend.game.model.Vocabulary;
 import com.example.gueszybackend.game.payload.GamePayload;
 import com.example.gueszybackend.game.service.CategoryService;
 import com.example.gueszybackend.game.service.GameService;
+import com.example.gueszybackend.game.service.VocabularyService;
 import com.example.gueszybackend.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class GameBusiness {
     @Autowired
     UserService userService;
 
+    @Autowired
+    VocabularyService vocabularyService;
+
     public List<GameJson> getListGame(){
         return GameJson.packJsons(gameService.getAllGame());
     }
@@ -33,13 +38,20 @@ public class GameBusiness {
     public void save(GamePayload gamePayload){
         Game game = new Game(
                 gamePayload.getName(),
-                categoryService.findById(gamePayload.getCategoryId()),
+                categoryService.findById(2),
                 userService.findById(gamePayload.getUserId()),
-                gamePayload.getPlay(),
+                0,
                 gamePayload.getAccess(),
                 gamePayload.getImage()
         );
         gameService.save(game);
+        for(String word : gamePayload.getWord()){
+            Vocabulary vocabulary = new Vocabulary(word,game);
+            vocabularyService.save(vocabulary);
+        }
+//        System.out.println(gamePayload.getWord());
+//        Long gameId = gameService.getLatestInsertedId();
+//        System.out.println(game.getId());
     }
     public void update(long id, GamePayload gamePayload){
         Game game = gameService.findById(id);

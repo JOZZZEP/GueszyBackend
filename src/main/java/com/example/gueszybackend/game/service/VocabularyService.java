@@ -42,4 +42,5 @@ public class VocabularyService implements IVocabulary {
     public List<Vocabulary> getByGameId(Game game){
        return vocabularyRepository.findAllByGameId(game);
     }
+
 }

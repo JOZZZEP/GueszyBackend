@@ -47,4 +47,12 @@ public class VocabularyBusiness {
     public void delete(long id){
         vocabularyService.delete(id);
     }
+    public void deleteByGameId(long id){
+        List<VocabularyJson> vocabularyJsons = getByGameId(id);
+        System.out.println(vocabularyJsons.size());
+        for(VocabularyJson vocabularyJson : vocabularyJsons){
+//            System.out.println(vocabularyJson.getId());
+            vocabularyService.delete(vocabularyJson.getId());
+        }
+    }
 }

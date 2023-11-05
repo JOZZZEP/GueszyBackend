@@ -12,4 +12,5 @@ public interface VocabularyRepository extends JpaRepository<Vocabulary, Long> {
     Optional<Vocabulary> findOptionalById(long id);
 //    List<Vocabulary> findAllByGameId(Game gameId);
     List<Vocabulary> findAllByGameId(Game game);
+    void deleteById(long id);
 }
