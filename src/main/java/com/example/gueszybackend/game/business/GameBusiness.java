@@ -31,6 +31,9 @@ public class GameBusiness {
         return GameJson.packJsons(gameService.getAllGame());
     }
 
+    public List<GameJson> getGameByUserId(long id){
+        return GameJson.packJsons(gameService.getByUserId(userService.findById(id)));
+    }
     public GameJson getGameId(long id){
         return GameJson.packJson(gameService.findById(id));
     }

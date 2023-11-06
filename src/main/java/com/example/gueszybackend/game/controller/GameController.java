@@ -54,6 +54,12 @@ public class GameController {
         return ResponseEntity.ok(gameBusiness.getGameId(id));
     }
 
+    @GetMapping(value = "/game/userId/{id}")
+    public ResponseEntity<List<GameJson>>
+    getByUserId(@PathVariable("id") long id) throws BaseException{
+        return ResponseEntity.ok(gameBusiness.getGameByUserId(id));
+    }
+
     @DeleteMapping(value = "/game/delete/{id}")
     public ResponseEntity<Void>
     delete(@PathVariable("id") long id)throws BaseException{

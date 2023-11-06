@@ -3,6 +3,7 @@ package com.example.gueszybackend.game.service;
 import com.example.gueszybackend.game.model.Game;
 import com.example.gueszybackend.game.repository.GameRepository;
 import com.example.gueszybackend.game.service.impl.IGame;
+import com.example.gueszybackend.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +38,8 @@ public class GameService implements IGame {
     public void delete(long id) {
         gameRepository.deleteById(id);
     }
-    public Long getLatestInsertedId() {
-        Game latestEntity = gameRepository.findTopByOrderByIdDesc();
-        if (latestEntity != null) {
-            return latestEntity.getId();
-        } else {
-            return null; // หรือค่าเริ่มต้นที่คุณต้องการ
-        }
+    public List<Game> getByUserId(User userId) {
+        return gameRepository.findByUserId(userId);
     }
+
 }
